@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ООО ДТЛ ЭКСПЕРТ | Профессиональная дорожная лаборатория в Кургане</title>
     <style>
-        /* Основная цветовая палитра: строгость и надежность */
         :root {
             --primary: #0f172a;     /* Глубокий асфальтовый темно-синий */
             --accent: #f59e0b;      /* Дорожный оранжевый */
             --bg-body: #94a3b8;     /* Темно-серый фон для ПК */
             --bg-app: #f1f5f9;      /* Светлый фон мобильной полоски */
             --text-dark: #1e293b;
-            --text-muted: #475569;
             --card-bg: #ffffff;
         }
 
@@ -21,7 +19,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Центрируем мобильный формат на ПК */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
@@ -33,10 +30,9 @@
             justify-content: center;
         }
 
-        /* ЕДИНЫЙ ЖЕСТКИЙ МОБИЛЬНЫЙ КОНТЕЙНЕР ОТ ВЕРХА ДО НИЗА */
         .mobile-wrapper {
             width: 100%;
-            max-width: 480px; /* Строгая ширина под телефон */
+            max-width: 480px; 
             min-height: 100vh;
             background-color: var(--bg-app);
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
@@ -45,11 +41,12 @@
             overflow: hidden;
         }
 
-        /* Узкая шапка в тон всего сайта */
+        /* Обновленная строгая шапка без картинки - надежно на 100% */
         header {
+            /* Профессиональный градиент: от темно-синего к почти черному */
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: #ffffff;
-            padding: 45px 20px;
+            padding: 50px 20px; /* Немного увеличили отступы для солидности */
             text-align: center;
             border-bottom: 5px solid var(--accent);
         }
@@ -62,17 +59,17 @@
         }
 
         header p {
-            margin: 10px 0 0;
-            font-size: 1rem;
+            margin: 12px 0 0;
+            font-size: 0.95rem;
             color: #cbd5e1;
             font-weight: 400;
+            line-height: 1.4;
         }
 
         .main-content {
             padding: 16px;
         }
 
-        /* Уникальные блоки */
         .info-card {
             background: var(--card-bg);
             padding: 24px 20px;
@@ -94,9 +91,9 @@
             margin: 0;
             font-size: 1rem;
             color: var(--text-dark);
+            text-align: left;
         }
 
-        /* Вертикальный список услуг */
         .services-list {
             display: flex;
             flex-direction: column;
@@ -111,13 +108,12 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        /* Место под твои 16:9 картинки */
         .service-item img {
             width: 100%;
-            height: 200px; /* Фиксированная высота для мобильных */
+            height: 200px; 
             object-fit: cover;
             display: block;
-            background-color: #e2e8f0; /* Заглушка, пока нет файлов */
+            background-color: #e2e8f0; 
         }
 
         .service-text {
@@ -131,21 +127,19 @@
             font-weight: 700;
         }
 
-        /* Улучшенный профессиональный текст */
         .service-text p {
             margin: 0;
             font-size: 0.95rem;
             color: #334155;
-            text-align: justify; /* Ровный край для солидности */
+            text-align: left; 
         }
 
-        /* Компактные контакты */
         .contacts-box {
             background: var(--primary);
             color: #ffffff;
             padding: 28px 20px;
             border-radius: 12px;
-            margin-top: auto; /* Подвал всегда внизу */
+            margin-top: auto; 
         }
 
         .contacts-box h2 {
@@ -213,10 +207,10 @@
             </div>
 
             <div class="service-item">
-                <img src="https://images.unsplash.com/photo-1621316065538-4e892e86ba20?auto=format&fit=crop&w=500&q=80" alt="Проверка плотности насыпи на объекте">
+                <img src="3.jpg" alt="Проверка плотности насыпи на объекте">
                 <div class="service-text">
                     <h3>Операционный контроль и плотнометрия</h3>
-                    <p>Выполняем выездной контроль на объекте. Обеспечиваем обязательную проверку плотности песчаной насыпи, земляного полотна и щебеночных оснований dynamic и баллонными плотномерами. Проводим штамповые испытания для определения модуля деформации конструкций.</p>
+                    <p>Выполняем выездной контроль на объекте. Обеспечиваем обязательную проверку плотности песчаной насыпи, земляного полотна и щебеночных оснований динамическими и баллонными плотномерами. Проводим штамповые испытания для определения модуля деформации конструкций.</p>
                 </div>
             </div>
 
