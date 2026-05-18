@@ -6,11 +6,12 @@
     <title>ООО ДТЛ ЭКСПЕРТ | Дорожная лаборатория Курган</title>
     <style>
         :root {
-            --primary: #1e293b;     /* Асфальтовый серый */
+            --primary: #1e293b;     /* Асфальтовый темно-серый */
             --accent: #f59e0b;      /* Дорожный оранжевый */
-            --bg: #f8fafc;          /* Светлый фон */
-            --text: #334155;        /* Основной текст */
-            --card-bg: #ffffff;     /* Фон блоков */
+            --bg-body: #cbd5e1;     /* Темно-серый фон для ПК (по бокам) */
+            --bg-app: #f8fafc;      /* Светлый фон самого "телефона" */
+            --text: #334155;
+            --card-bg: #ffffff;
         }
 
         * {
@@ -18,40 +19,54 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* На ПК делаем серый фон, чтобы мобильное окно выделялось */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--bg);
+            background-color: var(--bg-body); 
             color: var(--text);
             line-height: 1.5;
+            display: flex;
+            justify-content: center; /* Центрируем мобильный контейнер на экране ПК */
         }
 
+        /* ЖЕСТКИЙ МОБИЛЬНЫЙ КОНТЕЙНЕР (Сайт-полоска) */
+        .mobile-wrapper {
+            width: 100%;
+            max-width: 480px; /* Строгое ограничение ширины под телефон */
+            min-height: 100vh; /* Растягиваем минимум на всю высоту экрана */
+            background-color: var(--bg-app);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); /* Тень по бокам для выделения на ПК */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; /* Чтобы ничего не вылезало за края */
+        }
+
+        /* Шапка теперь тоже внутри узкого контейнера */
         header {
             background: linear-gradient(rgba(30, 41, 59, 0.85), rgba(30, 41, 59, 0.95)), 
-                        url('https://images.unsplash.com/photo-1515162305285-0293e4767cc2?auto=format&fit=crop&w=1200&q=80') center/cover;
+                        url('https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=600&q=80') center/cover;
             color: #ffffff;
-            padding: 45px 20px;
+            padding: 40px 20px;
             text-align: center;
             border-bottom: 4px solid var(--accent);
         }
 
         header h1 {
             margin: 0;
-            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-size: 1.7rem;
             font-weight: 800;
         }
 
         header p {
             margin: 8px 0 0;
-            font-size: clamp(0.95rem, 2vw, 1.2rem);
+            font-size: 1rem;
             color: #cbd5e1;
         }
 
         .main-content {
             padding: 16px;
-            max-width: 1100px;
-            margin: 0 auto;
         }
 
         .intro-box {
@@ -59,7 +74,7 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .intro-box h2 {
@@ -70,12 +85,11 @@
             padding-left: 10px;
         }
 
-        /* Адаптивная сетка карточек */
         .services-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            display: flex;
+            flex-direction: column; /* Карточки строго друг под другом */
             gap: 20px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .service-item {
@@ -83,20 +97,17 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
         }
 
         .service-item img {
             width: 100%;
-            height: 190px;
+            height: 180px;
             object-fit: cover;
             display: block;
         }
 
         .service-text {
             padding: 20px;
-            flex-grow: 1;
         }
 
         .service-text h3 {
@@ -111,7 +122,7 @@
             color: #475569;
         }
 
-        /* Стили для раскрывающегося прайса */
+        /* Прайс-лист */
         details {
             background: #273549;
             border-radius: 8px;
@@ -130,6 +141,7 @@
             align-items: center;
             background: #2e3f57;
             user-select: none;
+            font-size: 0.95rem;
         }
 
         summary::-webkit-details-marker {
@@ -150,14 +162,14 @@
             padding: 15px;
             background: #1e293b;
             color: #e2e8f0;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-top: 1px solid #334155;
         }
 
         .price-item {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #2d3d54;
         }
 
@@ -184,7 +196,8 @@
             font-size: 0.95rem;
         }
 
-        .reквизиты {
+        /* Исправленный класс реквизитов */
+        .requisites {
             margin-top: 20px;
             padding-top: 15px;
             border-top: 1px solid #334155;
@@ -197,70 +210,75 @@
             padding: 20px 0;
             color: #94a3b8;
             font-size: 0.8rem;
+            margin-top: auto; /* Прижимает подвал к низу контейнера */
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>ООО ДТЛ «ЭКСПЕРТ»</h1>
-    <p>Дорожно-Техническая Лаборатория</p>
-</header>
+<div class="mobile-wrapper">
 
-<div class="main-content">
+    <header>
+        <h1>ООО ДТЛ «ЭКСПЕРТ»</h1>
+        <p>Дорожно-Техническая Лаборатория</p>
+    </header>
 
-    <section class="intro-box">
-        <h2>Строительный контроль и лабораторное сопровождение</h2>
-        <p>Профессиональный независимый технический надзор в Кургане и области. Обеспечиваем полное соответствие дорожно-строительных работ требованиям ТР ТС, СП и ГОСТ.</p>
-    </section>
+    <div class="main-content">
 
-    <div class="services-list">
-        
-        <div class="service-item">
-            <img src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=500&q=80" alt="Входной контроль инертных материалов">
-            <div class="service-text">
-                <h3>Испытание материалов</h3>
-                <p>Входной контроль и определение физико-механических свойств: зерновой состав и дробимость щебня, модуль крупности песка, плотность грунтов, а также физические показатели битумных вяжущих смесей.</p>
+        <section class="intro-box">
+            <h2>Строительный контроль и лабораторное сопровождение</h2>
+            <p>Профессиональный независимый технический надзор в Кургане и области. Обеспечиваем полное соответствие дорожно-строительных работ требованиям ТР ТС, СП и ГОСТ.</p>
+        </section>
+
+        <div class="services-list">
+            
+            <div class="service-item">
+                <img src="https://images.unsplash.com/photo-1605648813354-9549f8eb9e66?auto=format&fit=crop&w=500&q=80" alt="Щебень и инертные материалы">
+                <div class="service-text">
+                    <h3>Испытание материалов</h3>
+                    <p>Входной контроль и определение физико-механических свойств: зерновой состав и дробимость щебня, модуль крупности песка, плотность грунтов и свойства битумных вяжущих.</p>
+                </div>
             </div>
+
+            <div class="service-item">
+                <img src="https://images.unsplash.com/photo-1584464457692-034873133181?auto=format&fit=crop&w=500&q=80" alt="Асфальтовое покрытие">
+                <div class="service-text">
+                    <h3>Кернирование и вырубки</h3>
+                    <p>Выбуривание кернов из конструктивных слоев дорожной одежды. Измерение толщины слоев, определение показателей водонасыщения и коэффициента уплотнения асфальтобетона.</p>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <img src="https://images.unsplash.com/photo-1621316065538-4e892e86ba20?auto=format&fit=crop&w=500&q=80" alt="Уплотнение основания">
+                <div class="service-text">
+                    <h3>Операционный контроль</h3>
+                    <p>Полевые испытания на объекте. <strong>Проверка плотности песчаной насыпи</strong>, контроль уплотнения земляного полотна и щебеночных оснований плотномерами.</p>
+                </div>
+            </div>
+
         </div>
 
-        <div class="service-item">
-            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=500&q=80" alt="Контроль укладки асфальта">
-            <div class="service-text">
-                <h3>Кернирование и вырубки</h3>
-                <p>Выбуривание кернов из конструктивных слоев дорожной одежды. Измерение проектной толщины слоев в лаборатории, определение показателей водонасыщения и коэффициента уплотнения асфальтобетона.</p>
-            </div>
-        </div>
+        <section class="contacts-box">
+            <h2>Контакты и информация</h2>
+            <div class="contact-row"><strong>Адрес:</strong> г. Курган, ул. Станционная, д. 64А, помещ. 1</div>
+            <div class="contact-row"><strong>Режим работы:</strong> Пн - Пт: с 8:00 до 17:00</div>
+            
+            <details>
+                <summary>Посмотреть базовый прейскурант</summary>
+                <div class="price-content">
+                    <div class="price-item"><span>Испытание песка/щебня (1 проба)</span> <span>от 4 500 ₽</span></div>
+                    <div class="price-item"><span>Выбуривание и испытание 1 керна</span> <span>от 3 000 ₽</span></div>
+                    <div class="price-item"><span>Замер плотности насыпи</span> <span>договорная</span></div>
+                    <div class="price-item"><span>Технический надзор</span> <span>по смете</span></div>
+                </div>
+            </details>
 
-        <div class="service-item">
-            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=80" alt="Работа на дорожном объекте">
-            <div class="service-text">
-                <h3>Операционный контроль</h3>
-                <p>Полевые оперативные испытания на линии. <strong>Проверка плотности песчаной насыпи</strong>, оперативный контроль уплотнения земляного полотна и щебеночных оснований динамическими плотномерами.</p>
+            <div class="requisites">
+                ИНН: 4500013260 | ОГРН: 1244500001063
             </div>
-        </div>
+        </section>
 
     </div>
-
-    <section class="contacts-box">
-        <h2>Контакты и информация</h2>
-        <div class="contact-row"><strong>Адрес лаборатории:</strong> г. Курган, ул. Станционная, д. 64А, помещ. 1</div>
-        <div class="contact-row"><strong>Режим работы:</strong> Пн - Пт: с 8:00 до 17:00</div>
-        
-        <details>
-            <summary>Посмотреть базовый прейскурант</summary>
-            <div class="price-content">
-                <div class="price-item"><span>Испытание песка/щебня (1 проба)</span> <span>от 4 500 ₽</span></div>
-                <div class="price-item"><span>Выбуривание и испытание 1 керна</span> <span>от 3 000 ₽</span></div>
-                <div class="price-item"><span>Замер плотности насыпи (плотномер)</span> <span>договорная</span></div>
-                <div class="price-item"><span>Технический надзор за ремонтом дорог</span> <span>по смете</span></div>
-            </div>
-        </details>
-
-        <div class="reквизиты">
-            ИНН: 4500013260 | ОГРН: 1244500001063
-        </div>
-    </section>
 
     <footer>
         <p>&copy; 2026 ООО ДТЛ «ЭКСПЕРТ». г. Курган</p>
