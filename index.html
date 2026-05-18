@@ -2,23 +2,20 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <!-- Строгий контроль масштаба для мобильных устройств -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ООО ДТЛ ЭКСПЕРТ | Дорожная лаборатория Курган</title>
     <style>
-        /* Современная цветовая палитра: дорожный стиль */
         :root {
-            --primary: #1e293b;     /* Глубокий асфальтовый */
-            --accent: #f59e0b;      /* Сигнальный оранжево-желтый */
-            --bg: #f1f5f9;          /* Светло-серый фон */
-            --text: #334155;        /* Читаемый серый для текста */
-            --card-bg: #ffffff;     /* Белый для карточек */
+            --primary: #1e293b;     /* Асфальтовый серый */
+            --accent: #f59e0b;      /* Дорожный оранжевый */
+            --bg: #f8fafc;          /* Светлый фон */
+            --text: #334155;        /* Основной текст */
+            --card-bg: #ffffff;     /* Фон блоков */
         }
 
-        /* Настройки для идеального отображения на смартфонах */
         * {
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* Убираем синий блик при нажатии на телефоне */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -30,44 +27,39 @@
             line-height: 1.5;
         }
 
-        /* Шапка, адаптированная под вертикальный экран */
         header {
             background: linear-gradient(rgba(30, 41, 59, 0.85), rgba(30, 41, 59, 0.95)), 
-                        url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80') center/cover;
+                        url('https://images.unsplash.com/photo-1515162305285-0293e4767cc2?auto=format&fit=crop&w=1200&q=80') center/cover;
             color: #ffffff;
-            padding: 35px 20px;
+            padding: 45px 20px;
             text-align: center;
             border-bottom: 4px solid var(--accent);
         }
 
         header h1 {
             margin: 0;
-            font-size: 1.8rem; /* Оптимально для узких экранов, не переносится уродливо */
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
             font-weight: 800;
-            letter-spacing: 0.5px;
         }
 
         header p {
             margin: 8px 0 0;
-            font-size: 1rem;
+            font-size: clamp(0.95rem, 2vw, 1.2rem);
             color: #cbd5e1;
-            font-weight: 400;
         }
 
-        /* Главный контейнер с удобными для пальцев отступами */
         .main-content {
             padding: 16px;
-            max-width: 480px; /* Ограничиваем ширину, чтобы на любом телефоне сидело идеально */
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        /* Блок информации */
         .intro-box {
             background: var(--card-bg);
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .intro-box h2 {
@@ -78,38 +70,33 @@
             padding-left: 10px;
         }
 
-        .intro-box p {
-            margin: 0;
-            font-size: 0.95rem;
-            color: #475569;
-        }
-
-        /* Лента услуг — строго в один вертикальный ряд для удобного скролла */
+        /* Адаптивная сетка карточек */
         .services-list {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
             gap: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
-        /* Мобильная карточка */
         .service-item {
             background: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Картинка в карточке: пропорции подобраны под мобильный скролл */
         .service-item img {
             width: 100%;
-            height: 180px;
+            height: 190px;
             object-fit: cover;
             display: block;
         }
 
         .service-text {
             padding: 20px;
+            flex-grow: 1;
         }
 
         .service-text h3 {
@@ -121,10 +108,63 @@
         .service-text p {
             margin: 0;
             font-size: 0.9rem;
-            color: #64748b;
+            color: #475569;
         }
 
-        /* Удобный мобильный блок контактов */
+        /* Стили для раскрывающегося прайса */
+        details {
+            background: #273549;
+            border-radius: 8px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 12px 15px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2e3f57;
+            user-select: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        details[open] summary::after {
+            content: "▲";
+        }
+
+        .price-content {
+            padding: 15px;
+            background: #1e293b;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            border-top: 1px solid #334155;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #2d3d54;
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
         .contacts-box {
             background: var(--primary);
             color: #ffffff;
@@ -144,10 +184,6 @@
             font-size: 0.95rem;
         }
 
-        .contact-row:last-child {
-            margin-bottom: 0;
-        }
-
         .reквизиты {
             margin-top: 20px;
             padding-top: 15px;
@@ -156,7 +192,6 @@
             color: #94a3b8;
         }
 
-        /* Аккуратный подвал */
         footer {
             text-align: center;
             padding: 20px 0;
@@ -174,53 +209,56 @@
 
 <div class="main-content">
 
-    <!-- Блок о компании -->
     <section class="intro-box">
-        <h2>Контроль качества дорог</h2>
-        <p>Независимая лаборатория в Кургане. Выполняем полный комплекс испытаний и осуществляем технадзор на объектах дорожного строительства.</p>
+        <h2>Строительный контроль и лабораторное сопровождение</h2>
+        <p>Профессиональный независимый технический надзор в Кургане и области. Обеспечиваем полное соответствие дорожно-строительных работ требованиям ТР ТС, СП и ГОСТ.</p>
     </section>
 
-    <!-- Вертикальный список услуг (удобно листать большим пальцем) -->
     <div class="services-list">
         
-        <!-- 1. Испытания -->
         <div class="service-item">
-            <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=500&q=80" alt="Испытания материалов">
+            <img src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=500&q=80" alt="Входной контроль инертных материалов">
             <div class="service-text">
                 <h3>Испытание материалов</h3>
-                <p>Проверка физико-механических свойств асфальтобетона, щебня, песка, грунта и битума на соответствие техническим регламентам и ГОСТ.</p>
+                <p>Входной контроль и определение физико-механических свойств: зерновой состав и дробимость щебня, модуль крупности песка, плотность грунтов, а также физические показатели битумных вяжущих смесей.</p>
             </div>
         </div>
 
-        <!-- 2. Керны -->
         <div class="service-item">
-            <img src="https://images.unsplash.com/photo-1621316065538-4e892e86ba20?auto=format&fit=crop&w=500&q=80" alt="Вырубка кернов">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=500&q=80" alt="Контроль укладки асфальта">
             <div class="service-text">
-                <h3>Кернирование (вырубки)</h3>
-                <p>Выбуривание пробы из готового слоя асфальта для точного контроля толщины покрытия, степени уплотнения и водонасыщения.</p>
+                <h3>Кернирование и вырубки</h3>
+                <p>Выбуривание кернов из конструктивных слоев дорожной одежды. Измерение проектной толщины слоев в лаборатории, определение показателей водонасыщения и коэффициента уплотнения асфальтобетона.</p>
             </div>
         </div>
 
-        <!-- 3. Строительный контроль -->
         <div class="service-item">
-            <img src="https://images.unsplash.com/photo-1585435422895-3af62a744265?auto=format&fit=crop&w=500&q=80" alt="Контроль насыпи">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=80" alt="Работа на дорожном объекте">
             <div class="service-text">
-                <h3>Строительный контроль</h3>
-                <p>Операционный выездной контроль. Включает обязательную <strong>проверку плотности песчаной насыпи</strong>, земляного полотна и щебеночных оснований.</p>
+                <h3>Операционный контроль</h3>
+                <p>Полевые оперативные испытания на линии. <strong>Проверка плотности песчаной насыпи</strong>, оперативный контроль уплотнения земляного полотна и щебеночных оснований динамическими плотномерами.</p>
             </div>
         </div>
 
     </div>
 
-    <!-- Контакты, оптимизированные для экрана телефона -->
     <section class="contacts-box">
-        <h2>Контакты</h2>
-        <div class="contact-row"><strong>Адрес:</strong> г. Курган, ул. Станционная, д. 64А, помещ. 1</div>
-        <div class="contact-row"><strong>График:</strong> Пн - Пт: с 8:00 до 17:00</div>
+        <h2>Контакты и информация</h2>
+        <div class="contact-row"><strong>Адрес лаборатории:</strong> г. Курган, ул. Станционная, д. 64А, помещ. 1</div>
+        <div class="contact-row"><strong>Режим работы:</strong> Пн - Пт: с 8:00 до 17:00</div>
         
+        <details>
+            <summary>Посмотреть базовый прейскурант</summary>
+            <div class="price-content">
+                <div class="price-item"><span>Испытание песка/щебня (1 проба)</span> <span>от 4 500 ₽</span></div>
+                <div class="price-item"><span>Выбуривание и испытание 1 керна</span> <span>от 3 000 ₽</span></div>
+                <div class="price-item"><span>Замер плотности насыпи (плотномер)</span> <span>договорная</span></div>
+                <div class="price-item"><span>Технический надзор за ремонтом дорог</span> <span>по смете</span></div>
+            </div>
+        </details>
+
         <div class="reквизиты">
-            ИНН: 4500013260<br>
-            ОГРН: 1244500001063
+            ИНН: 4500013260 | ОГРН: 1244500001063
         </div>
     </section>
 
