@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ООО ДТЛ ЭКСПЕРТ | Профессиональная дорожная лаборатория в Кургане</title>
+    <title>ООО ДТЛ ЭКСПЕРТ | Дорожная лаборатория Курган</title>
     <style>
         :root {
-            --primary: #0f172a;     /* Глубокий асфальтовый темно-синий */
+            --primary: #0f172a;     /* Глубокий асфальтовый */
             --accent: #f59e0b;      /* Дорожный оранжевый */
-            --bg-body: #94a3b8;     /* Темно-серый фон для ПК */
-            --bg-app: #f1f5f9;      /* Светлый фон мобильной полоски */
+            --bg-site: #f1f5f9;     /* Светлый фон сайта */
+            --card-bg: #ffffff;     /* Белый фон блоков */
             --text-dark: #1e293b;
-            --card-bg: #ffffff;
+            --text-muted: #64748b;
         }
 
         * {
@@ -23,56 +23,92 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--bg-body); 
+            background-color: var(--bg-site);
             color: var(--text-dark);
             line-height: 1.6;
-            display: flex;
-            justify-content: center;
         }
 
-        .mobile-wrapper {
-            width: 100%;
-            max-width: 480px; 
-            min-height: 100vh;
-            background-color: var(--bg-app);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        /* Обновленная строгая шапка без картинки - надежно на 100% */
+        /* Шапка: теперь она адаптивная (на ПК широкая, на мобилках компактная) */
         header {
-            /* Профессиональный градиент: от темно-синего к почти черному */
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: #ffffff;
-            padding: 50px 20px; /* Немного увеличили отступы для солидности */
+            padding: 40px 20px;
             text-align: center;
             border-bottom: 5px solid var(--accent);
         }
 
         header h1 {
             margin: 0;
-            font-size: 1.6rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             font-weight: 800;
-            letter-spacing: 0.5px;
         }
 
         header p {
-            margin: 12px 0 0;
-            font-size: 0.95rem;
+            margin: 10px 0 0;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
             color: #cbd5e1;
-            font-weight: 400;
-            line-height: 1.4;
         }
 
-        .main-content {
-            padding: 16px;
+        /* НАВИГАЦИОННАЯ ПАНЕЛЬ ВКЛАДОК */
+        .tabs-nav {
+            background: #1e293b;
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
+        .tab-link {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            padding: 15px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            max-width: 200px;
+            text-align: center;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-link:hover {
+            color: #ffffff;
+            background: #273549;
+        }
+
+        .tab-link.active {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            background: #0f172a;
+        }
+
+        /* ОСНОВНОЙ КОНТЕЙНЕР (Адаптивный макет) */
+        .main-container {
+            max-width: 1200px; /* Ограничение ширины для больших мониторов */
+            margin: 25px auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        /* Управление видимостью вкладок */
+        .tab-content {
+            display: none; /* По умолчанию скрыто, включается через JS */
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* СТИЛИ ДЛЯ КАРТОЧЕК И БЛОКОВ */
         .info-card {
             background: var(--card-bg);
-            padding: 24px 20px;
+            padding: 30px 25px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             margin-bottom: 24px;
@@ -81,24 +117,47 @@
         .info-card h2 {
             margin-top: 0;
             color: var(--primary);
-            font-size: 1.35rem;
-            font-weight: 700;
+            font-size: 1.4rem;
             border-left: 5px solid var(--accent);
             padding-left: 12px;
         }
 
-        .info-card p {
-            margin: 0;
-            font-size: 1rem;
-            color: var(--text-dark);
-            text-align: left;
+        /* Сетка для раздела "О нас" на ПК (2 колонки) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
+        @media (min-width: 769px) {
+            .about-grid {
+                grid-template-columns: 1.2fr 0.8fr; /* На ПК: инфо слева, директор справа */
+            }
+        }
+
+        .director-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .director-box h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        /* Сетка для списка услуг */
         .services-list {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 24px;
-            margin-bottom: 24px;
+        }
+
+        @media (min-width: 769px) {
+            .services-list {
+                grid-template-columns: repeat(3, 1fr); /* На ПК карточки услуг встают в 3 колонки */
+            }
         }
 
         .service-item {
@@ -106,53 +165,118 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
         }
 
         .service-item img {
             width: 100%;
-            height: 200px; 
+            height: 200px;
             object-fit: cover;
             display: block;
-            background-color: #e2e8f0; 
         }
 
         .service-text {
-            padding: 24px 20px;
+            padding: 20px;
+            flex-grow: 1;
         }
 
         .service-text h3 {
-            margin: 0 0 12px;
+            margin: 0 0 10px;
             color: var(--primary);
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.2rem;
         }
 
         .service-text p {
             margin: 0;
             font-size: 0.95rem;
             color: #334155;
-            text-align: left; 
+            text-align: left;
         }
 
+        /* РАСКРЫВАЮЩИЕСЯ БЛОКИ (Для материалов и ГОСТов) */
+        details {
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+        }
+
+        summary {
+            padding: 18px 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            background: #ffffff;
+        }
+
+        summary::-webkit-details-marker { display: none; }
+
+        summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            color: var(--accent);
+            transition: transform 0.3s;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .details-content {
+            padding: 20px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* Оформление нормативных документов */
+        .gost-tag {
+            display: inline-block;
+            background: #e2e8f0;
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .test-list {
+            margin: 10px 0 0 0;
+            padding-left: 20px;
+            font-size: 0.95rem;
+        }
+
+        .test-list li {
+            margin-bottom: 8px;
+        }
+
+        /* ПОДВАЛ И КОНТАКТЫ */
         .contacts-box {
             background: var(--primary);
             color: #ffffff;
-            padding: 28px 20px;
+            padding: 30px 25px;
             border-radius: 12px;
-            margin-top: auto; 
+            margin-top: 30px;
         }
 
         .contacts-box h2 {
             margin-top: 0;
             color: var(--accent);
             font-size: 1.4rem;
-            font-weight: 700;
         }
 
         .contact-row {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-size: 0.95rem;
-            color: #e2e8f0;
         }
 
         .requisites {
@@ -166,74 +290,147 @@
 
         footer {
             text-align: center;
-            padding: 20px 0;
-            color: #94a3b8;
-            font-size: 0.8rem;
+            padding: 30px 0;
+            color: #64748b;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
-<div class="mobile-wrapper">
-
     <header>
         <h1>ООО ДТЛ «ЭКСПЕРТ»</h1>
-        <p>Комплексное лабораторное сопровождение дорожного строительства</p>
+        <p>Дорожно-Техническая Лаборатория • Комплексный контроль качества</p>
     </header>
 
-    <div class="main-content">
+    <nav class="tabs-nav">
+        <button class="tab-link active" onclick="switchTab(event, 'about')">О нас</button>
+        <button class="tab-link" onclick="switchTab(event, 'services')">Услуги</button>
+        <button class="tab-link" onclick="switchTab(event, 'materials')">Материалы</button>
+    </nav>
 
-        <section class="info-card">
-            <h2>Профессиональный технический надзор</h2>
-            <p>Наша лаборатория обеспечивает полный цикл независимого контроля качества в Кургане и области. Мы помогаем подрядчикам и заказчикам соблюдать проектные решения, требования ГОСТ и ТР ТС, гарантируя долговечность и безопасность автомобильных дорог.</p>
+    <div class="main-container">
+
+        <section id="about" class="tab-content" style="display: block;">
+            <div class="info-card">
+                <h2>О лаборатории</h2>
+                <div class="about-grid">
+                    <div>
+                        <p>ООО ДТЛ «ЭКСПЕРТ» — это независимая дорожно-техническая лаборатория, выполняющая полный спектр услуг по испытанию строительных материалов, операционному контролю и техническому сопровождению объектов дорожного хозяйства в г. Кургане и Курганской области.</p>
+                        <p>Мы работаем как со строящимися объектами, так и в рамках экспертных проверок при ремонте и реконструкции автомагистралей, городских улиц и площадок производственного назначения.</p>
+                    </div>
+                    <div class="director-box">
+                        <h3>Руководство компании</h3>
+                        <p><strong>Директор:</strong> Маглан Александр Владимирович</p>
+                        <p><strong>Квалификация:</strong> Высшее профильное дорожно-строительное техническое образование. Действующая аттестация в области строительного контроля и лабораторных испытаний дорожных одежд.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <div class="services-list">
-            
-            <div class="service-item">
-                <img src="1.jpg" alt="Лабораторный контроль инертных материалов">
-                <div class="service-text">
-                    <h3>Входной контроль и испытания материалов</h3>
-                    <p>Мы проводим комплексные испытания инертных материалов и грунтов земляного полотна. Определяем гранулометрический (зерновой) состав, насыпную плотность, дробимость и лещадность щебня, модуль крупности песка и ЩПС. Это гарантирует надежность основания дороги и позволяет избежать просадок.</p>
+        <section id="services" class="tab-content">
+            <div class="services-list">
+                <div class="service-item">
+                    <img src="1.jpg" alt="Испытание материалов">
+                    <div class="service-text">
+                        <h3>Испытание материалов</h3>
+                        <p>Лабораторные исследования и входной контроль инертных дорожно-строительных материалов. Определение пригодности смесей для устройства конструктивных слоев.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <img src="2.jpg" alt="Кернирование">
+                    <div class="service-text">
+                        <h3>Кернирование и вырубки</h3>
+                        <p>Контроль уложенного верхнего и нижнего слоев асфальтобетона методом выбуривания цилиндрических проб. Проверка физико-механических свойств готового покрытия.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <img src="3.jpg" alt="Операционный контроль">
+                    <div class="service-text">
+                        <h3>Операционный контроль</h3>
+                        <p>Контроль технологических процессов непосредственно на линии. Замеры плотности плотномерами, проверка параметров уплотнения конструктивных слоев дороги.</p>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="service-item">
-                <img src="2.jpg" alt="Выбуривание кернов асфальтобетона">
-                <div class="service-text">
-                    <h3>Контроль качества покрытия и кернирование</h3>
-                    <p>Проводим оперативный контроль укладки асфальтобетона. Выполняем выбуривание кернов (вырубок) из конструктивных слоев для определения фактической толщины слоев в лаборатории, коэффициента уплотнения, воздушных пустот и коэффициента водостойкости по ГОСТ.</p>
-                </div>
+        <section id="materials" class="tab-content">
+            <div class="info-card">
+                <h2>Лабораторные исследования материалов</h2>
+                <p style="margin-bottom: 20px;">Контроль качества дорожно-строительных материалов осуществляется в строгом соответствии с действующими национальными и межгосударственными стандартами РФ:</p>
+                
+                <details>
+                    <summary>Щебень для дорожных работ</summary>
+                    <div class="details-content">
+                        <span class="gost-tag">ГОСТ 32703-2014</span>
+                        <p>Стандарт распространяется на щебень и гравий из горных пород, применяемые при строительстве, реконструкции, капитальном ремонте и ремонте автомобильных дорог общего пользования.</p>
+                        <strong>Виды проводимых лабораторных испытаний:</strong>
+                        <ul class="test-list">
+                            <li>Определение зернового (гранулометрического) состава на ситах;</li>
+                            <li>Определение марки дробимости при сжатии в цилиндре;</li>
+                            <li>Определение лещадности (содержания пластинчатых и игловатых зерен);</li>
+                            <li>Определение истираемости в полочном барабане (марка И);</li>
+                            <li>Определение содержания пылевидных и глинистых частиц.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Минеральный порошок</summary>
+                    <div class="details-content">
+                        <span class="gost-tag">ГОСТ 32761-2014</span>
+                        <p>Стандарт применяется к минеральным порошкам (активированным и неактивированным), производимым из известняков, доломитов и других пород, используемым в качестве структурирующего наполнителя в асфальтобетонных смесях.</p>
+                        <strong>Виды проводимых лабораторных испытаний:</strong>
+                        <ul class="test-list">
+                            <li>Определение тонкости помола (зернового состава порошка);</li>
+                            <li>Определение средней плотности и пористости сухого порошка;</li>
+                            <li>Определение показателя гидрофобности (для активированных порошков);</li>
+                            <li>Определение влажности;</li>
+                            <li>Определение битумоемкости (способности удерживать органическое вяжущее).</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
-
-            <div class="service-item">
-                <img src="3.jpg" alt="Проверка плотности насыпи на объекте">
-                <div class="service-text">
-                    <h3>Операционный контроль и плотнометрия</h3>
-                    <p>Выполняем выездной контроль на объекте. Обеспечиваем обязательную проверку плотности песчаной насыпи, земляного полотна и щебеночных оснований динамическими и баллонными плотномерами. Проводим штамповые испытания для определения модуля деформации конструкций.</p>
-                </div>
-            </div>
-
-        </div>
+        </section>
 
         <section class="contacts-box">
-            <h2>Контакты</h2>
+            <h2>Контакты и информация</h2>
             <div class="contact-row"><strong>Юридический адрес лаборатории:</strong> г. Курган, ул. Станционная, д. 64А, помещ. 1</div>
             <div class="contact-row"><strong>Режим работы:</strong> Пн - Пт: с 8:00 до 17:00 (прием проб)</div>
 
             <div class="requisites">
                 ИНН: 4500013260 | ОГРН: 1244500001063<br>
-                Все испытания проводятся по аттестованным методикам ГОСТ
+                Все испытания проводятся по аттестованным методикам ГОСТ РФ
             </div>
         </section>
 
     </div>
 
     <footer>
-        <p>&copy; 2026 ООО ДТЛ «ЭКСПЕРТ». Курган</p>
+        <p>&copy; 2026 ООО ДТЛ «ЭКСПЕРТ». г. Курган</p>
     </footer>
 
-</div>
+    <script>
+        function switchTab(evt, tabId) {
+            // Скрываем все вкладки
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+            }
 
+            // Убираем класс active у всех кнопок
+            const tabLinks = document.getElementsByClassName("tab-link");
+            for (let i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+            }
+
+            // Показываем нужную вкладку и делаем кнопку активной
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.classList.add("active");
+            
+            // Скроллим к началу контента, чтобы на мобилках было удобно
+            window.scrollTo({ top: document.querySelector('header').offsetHeight, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
