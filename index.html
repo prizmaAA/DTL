@@ -28,7 +28,6 @@
             line-height: 1.6;
         }
 
-        /* Шапка: теперь она адаптивная (на ПК широкая, на мобилках компактная) */
         header {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: #ffffff;
@@ -64,13 +63,13 @@
             background: none;
             border: none;
             color: #94a3b8;
-            padding: 15px 20px;
-            font-size: 1rem;
+            padding: 15px 10px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             flex: 1;
-            max-width: 200px;
+            max-width: 160px;
             text-align: center;
             border-bottom: 3px solid transparent;
         }
@@ -86,17 +85,16 @@
             background: #0f172a;
         }
 
-        /* ОСНОВНОЙ КОНТЕЙНЕР (Адаптивный макет) */
+        /* ОСНОВНОЙ КОНТЕЙНЕР */
         .main-container {
-            max-width: 1200px; /* Ограничение ширины для больших мониторов */
+            max-width: 1200px;
             margin: 25px auto;
             padding: 0 20px;
             width: 100%;
         }
 
-        /* Управление видимостью вкладок */
         .tab-content {
-            display: none; /* По умолчанию скрыто, включается через JS */
+            display: none;
             animation: fadeIn 0.4s ease;
         }
 
@@ -105,7 +103,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* СТИЛИ ДЛЯ КАРТОЧЕК И БЛОКОВ */
         .info-card {
             background: var(--card-bg);
             padding: 30px 25px;
@@ -120,31 +117,62 @@
             font-size: 1.4rem;
             border-left: 5px solid var(--accent);
             padding-left: 12px;
+            margin-bottom: 20px;
         }
 
-        /* Сетка для раздела "О нас" на ПК (2 колонки) */
+        /* Сетка для раздела "О нас" */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 24px;
         }
 
         @media (min-width: 769px) {
             .about-grid {
-                grid-template-columns: 1.2fr 0.8fr; /* На ПК: инфо слева, директор справа */
+                grid-template-columns: 1.1fr 0.9fr;
             }
         }
 
-        .director-box {
+        /* Блок директора с фото 4.jpg */
+        .director-card {
             background: #f8fafc;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 24px;
+            border-radius: 12px;
             border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
         }
 
-        .director-box h3 {
-            margin-top: 0;
+        @media (min-width: 480px) {
+            .director-card {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+            }
+        }
+
+        .director-photo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%; /* Круглое аккуратное фото */
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        .director-info h3 {
+            margin: 0 0 8px 0;
             color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .director-info p {
+            margin: 0 0 8px 0;
+            font-size: 0.95rem;
         }
 
         /* Сетка для списка услуг */
@@ -156,7 +184,7 @@
 
         @media (min-width: 769px) {
             .services-list {
-                grid-template-columns: repeat(3, 1fr); /* На ПК карточки услуг встают в 3 колонки */
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -169,9 +197,10 @@
             flex-direction: column;
         }
 
+        /* Жесткий контроль размеров, чтобы картинки не были огромными */
         .service-item img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
             display: block;
         }
@@ -194,7 +223,7 @@
             text-align: left;
         }
 
-        /* РАСКРЫВАЮЩИЕСЯ БЛОКИ (Для материалов и ГОСТов) */
+        /* РАСКРЫВАЮЩИЕСЯ БЛОКИ */
         details {
             background: var(--card-bg);
             border-radius: 12px;
@@ -205,8 +234,8 @@
         }
 
         summary {
-            padding: 18px 20px;
-            font-size: 1.1rem;
+            padding: 16px 20px;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--primary);
             cursor: pointer;
@@ -237,16 +266,15 @@
             border-top: 1px solid #e2e8f0;
         }
 
-        /* Оформление нормативных документов */
         .gost-tag {
             display: inline-block;
-            background: #e2e8f0;
-            color: var(--primary);
-            padding: 3px 8px;
-            border-radius: 4px;
+            background: #1e293b;
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 6px;
             font-size: 0.85rem;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .test-list {
@@ -319,10 +347,14 @@
                         <p>ООО ДТЛ «ЭКСПЕРТ» — это независимая дорожно-техническая лаборатория, выполняющая полный спектр услуг по испытанию строительных материалов, операционному контролю и техническому сопровождению объектов дорожного хозяйства в г. Кургане и Курганской области.</p>
                         <p>Мы работаем как со строящимися объектами, так и в рамках экспертных проверок при ремонте и реконструкции автомагистралей, городских улиц и площадок производственного назначения.</p>
                     </div>
-                    <div class="director-box">
-                        <h3>Руководство компании</h3>
-                        <p><strong>Директор:</strong> Маглан Александр Владимирович</p>
-                        <p><strong>Квалификация:</strong> Высшее профильное дорожно-строительное техническое образование. Действующая аттестация в области строительного контроля и лабораторных испытаний дорожных одежд.</p>
+                    
+                    <div class="director-card">
+                        <img src="4.jpg" alt="Маглан Александр Владимирович" class="director-photo">
+                        <div class="director-info">
+                            <h3>Руководство</h3>
+                            <p><strong>Директор:</strong> Маглан Александр Владимирович</p>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;">Высшее профильное дорожно-строительное техническое образование. Действующая аттестация в области строительного контроля дорожных одежд.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -341,7 +373,7 @@
                     <img src="2.jpg" alt="Кернирование">
                     <div class="service-text">
                         <h3>Кернирование и вырубки</h3>
-                        <p>Контроль уложенного верхнего и нижнего слоев асфальтобетона методом выбуривания цилиндрических проб. Проверка физико-механических свойств готового покрытия.</p>
+                        <p>Контроль уложенного верхнего и нижнего слоев асфальтобетона методом выбуривание цилиндрических проб. Проверка физико-механических свойств готового покрытия.</p>
                     </div>
                 </div>
                 <div class="service-item">
@@ -362,14 +394,13 @@
                 <details>
                     <summary>Щебень для дорожных работ</summary>
                     <div class="details-content">
-                        <span class="gost-tag">ГОСТ 32703-2014</span>
-                        <p>Стандарт распространяется на щебень и гравий из горных пород, применяемые при строительстве, реконструкции, капитальном ремонте и ремонте автомобильных дорог общего пользования.</p>
-                        <strong>Виды проводимых лабораторных испытаний:</strong>
+                        <div class="gost-tag">ГОСТ 32703-2014</div>
+                        <p>Действующий межгосударственный стандарт на щебень и гравий из горных пород, применяемые при строительстве и ремонте автомобильных дорог общего пользования.</p>
+                        <strong>Виды лабораторных испытаний:</strong>
                         <ul class="test-list">
                             <li>Определение зернового (гранулометрического) состава на ситах;</li>
                             <li>Определение марки дробимости при сжатии в цилиндре;</li>
-                            <li>Определение лещадности (содержания пластинчатых и игловатых зерен);</li>
-                            <li>Определение истираемости в полочном барабане (марка И);</li>
+                            <li>Определение лещадности (содержания пластинчатых зерен);</li>
                             <li>Определение содержания пылевидных и глинистых частиц.</li>
                         </ul>
                     </div>
@@ -378,15 +409,41 @@
                 <details>
                     <summary>Минеральный порошок</summary>
                     <div class="details-content">
-                        <span class="gost-tag">ГОСТ 32761-2014</span>
-                        <p>Стандарт применяется к минеральным порошкам (активированным и неактивированным), производимым из известняков, доломитов и других пород, используемым в качестве структурирующего наполнителя в асфальтобетонных смесях.</p>
-                        <strong>Виды проводимых лабораторных испытаний:</strong>
+                        <div class="gost-tag">ГОСТ 32761-2014</div>
+                        <p>Действующий стандарт для минеральных порошков, используемых в качестве структурирующего наполнителя в асфальтобетонных смесях.</p>
+                        <strong>Виды лабораторных испытаний:</strong>
                         <ul class="test-list">
-                            <li>Определение тонкости помола (зернового состава порошка);</li>
+                            <li>Определение тонкости помола и зернового состава;</li>
                             <li>Определение средней плотности и пористости сухого порошка;</li>
-                            <li>Определение показателя гидрофобности (для активированных порошков);</li>
-                            <li>Определение влажности;</li>
-                            <li>Определение битумоемкости (способности удерживать органическое вяжущее).</li>
+                            <li>Определение влажности и битумоемкости порошка.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Цемент для дорожного строительства</summary>
+                    <div class="details-content">
+                        <div class="gost-tag">ГОСТ Р 55224-2020</div>
+                        <p>Современный национальный стандарт РФ на цементы для транспортного строительства. Применяется при устройстве монолитных дорожных покрытий и оснований.</p>
+                        <strong>Виды лабораторных испытаний:</strong>
+                        <ul class="test-list">
+                            <li>Определение сроков схватывания и равномерности изменения объема;</li>
+                            <li>Определение предела прочности при сжатии и изгибе;</li>
+                            <li>Определение тонкости помола (удельной поверхности).</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Асфальтобетонный гранулят (RAP)</summary>
+                    <div class="details-content">
+                        <div class="gost-tag">ГОСТ Р 59123-2020</div>
+                        <p>Актуальный стандарт на асфальтобетонный гранулят, получаемый методом холодного фрезерования или дробления старых покрытий для повторного применения в дорожных слоях.</p>
+                        <strong>Виды лабораторных испытаний:</strong>
+                        <ul class="test-list">
+                            <li>Определение количественного содержания вяжущего (битума) методом выжигания или экстрагирования;</li>
+                            <li>Определение зернового состава минеральной части гранулята;</li>
+                            <li>Определение влажности материала.</li>
                         </ul>
                     </div>
                 </details>
@@ -412,23 +469,19 @@
 
     <script>
         function switchTab(evt, tabId) {
-            // Скрываем все вкладки
             const tabContents = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabContents.length; i++) {
                 tabContents[i].style.display = "none";
             }
 
-            // Убираем класс active у всех кнопок
             const tabLinks = document.getElementsByClassName("tab-link");
             for (let i = 0; i < tabLinks.length; i++) {
                 tabLinks[i].classList.remove("active");
             }
 
-            // Показываем нужную вкладку и делаем кнопку активной
             document.getElementById(tabId).style.display = "block";
             evt.currentTarget.classList.add("active");
             
-            // Скроллим к началу контента, чтобы на мобилках было удобно
             window.scrollTo({ top: document.querySelector('header').offsetHeight, behavior: 'smooth' });
         }
     </script>
