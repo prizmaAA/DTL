@@ -130,7 +130,6 @@
             }
         }
 
-        /* Обновленный блок директора (с прямоугольной фотографией) */
         .director-card {
             background: #f8fafc;
             padding: 24px;
@@ -152,9 +151,9 @@
         }
 
         .director-photo {
-            width: 130px; /* Прямоугольная ширина */
-            height: 170px; /* Прямоугольная высота */
-            border-radius: 8px; /* Аккуратные, слегка скругленные углы */
+            width: 130px; 
+            height: 170px; 
+            border-radius: 8px; 
             object-fit: cover;
             border: 3px solid var(--accent);
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -170,6 +169,33 @@
         .director-info p {
             margin: 0 0 8px 0;
             font-size: 0.95rem;
+        }
+
+        /* Таблица официальных реквизитов */
+        .legal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .legal-table tr {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .legal-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .legal-table td {
+            padding: 10px 5px;
+            vertical-align: top;
+        }
+
+        .legal-table td:first-child {
+            font-weight: 700;
+            color: var(--primary);
+            width: 40%;
         }
 
         .services-list {
@@ -304,9 +330,10 @@
             margin-top: 25px;
             padding-top: 15px;
             border-top: 1px solid #334155;
-            font-size: 0.8rem;
-            color: #94a3b8;
+            font-size: 0.85rem;
+            color: #cbd5e1;
             text-align: center;
+            font-style: normal;
         }
 
         footer {
@@ -414,7 +441,7 @@
                         <strong>Виды лабораторных испытаний:</strong>
                         <ul class="test-list">
                             <li>Определение количественного содержания вяжущего (битума) методом выжигания или экстрагирования;</li>
-                            <li>Определение зернового состава минеральной части гранулята;</li>
+                            <li>Определение зернового состава mineralной части гранулята;</li>
                             <li>Определение влажности материала.</li>
                         </ul>
                     </div>
@@ -425,7 +452,7 @@
         <section id="about" class="tab-content">
             <div class="info-card">
                 <h2>О лаборатории</h2>
-                <div class="about-grid">
+                <div class="about-grid" style="margin-bottom: 30px;">
                     <div>
                         <p>ООО ДТЛ «ЭКСПЕРТ» — это независимая дорожно-техническая лаборатория, выполняющая полный спектр услуг по испытанию строительных материалов, операционному контролю и техническому сопровождению объектов дорожного хозяйства в г. Кургане и Курганской области.</p>
                         <p>Мы работаем как со строящимися объектами, так и в рамках экспертных проверок при ремонте и реконструкции автомагистралей, городских улиц и площадок производственного назначения.</p>
@@ -440,17 +467,44 @@
                         </div>
                     </div>
                 </div>
+
+                <h2>Юридический статус и реквизиты</h2>
+                <table class="legal-table">
+                    <tr>
+                        <td>Официальное название</td>
+                        <td>ООО Дорожно-Техническая Лаборатория «ЭКСПЕРТ»</td>
+                    </tr>
+                    <tr>
+                        <td>Дата регистрации</td>
+                        <td>26 марта 2024 года</td>
+                    </tr>
+                    <tr>
+                        <td>Юридический адрес</td>
+                        <td>640002, Курганская область, г. Курган, ул. Станционная, д. 64А, помещ. 1</td>
+                    </tr>
+                    <tr>
+                        <td>Учредитель компании</td>
+                        <td>Исоян Темур Жимоевич</td>
+                    </tr>
+                    <tr>
+                        <td>Основной вид деятельности</td>
+                        <td>Деятельность по техническому контролю, испытаниям и анализу прочая (ОКВЭД 71.20.9)</td>
+                    </tr>
+                    <tr>
+                        <td>ИНН / ОГРН</td>
+                        <td>4500013260 / 1244500001063</td>
+                    </tr>
+                </table>
             </div>
         </section>
 
         <section class="contacts-box">
-            <h2>Контакты и информация</h2>
-            <div class="contact-row"><strong>Юридический адрес лаборатории:</strong> г. Курган, ул. Станционная, д. 64А, помещ. 1</div>
-            <div class="contact-row"><strong>Режим работы:</strong> Пн - Пт: с 8:00 до 17:00 (прием проб)</div>
+            <h2>Контакты</h2>
+            <div class="contact-row"><strong>Местонахождение:</strong> г. Курган, ул. Станционная, д. 64А</div>
+            <div class="contact-row"><strong>Режим работы:</strong> Пн - Пт: с 8:00 до 17:00 (прием дорожно-строительных проб)</div>
 
             <div class="requisites">
-                ИНН: 4500013260 | ОГРН: 1244500001063<br>
-                Все испытания проводятся по аттестованным методикам ГОСТ РФ
+                Все лабораторные испытания проводятся в строгом соответствии с аттестованными методиками стандартов ГОСТ РФ
             </div>
         </section>
 
