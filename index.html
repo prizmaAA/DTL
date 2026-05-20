@@ -6,10 +6,10 @@
     <title>ООО ДТЛ ЭКСПЕРТ | Дорожная лаборатория Курган</title>
     <style>
         :root {
-            --primary: #0f172a;     
-            --accent: #f59e0b;      
-            --bg-site: #f1f5f9;     
-            --card-bg: #ffffff;     
+            --primary: #0f172a;     /* Глубокий асфальтовый */
+            --accent: #f59e0b;      /* Дорожный оранжевый */
+            --bg-site: #f1f5f9;     /* Светлый фон сайта */
+            --card-bg: #ffffff;     /* Белый фон блоков */
             --text-dark: #1e293b;
             --text-muted: #64748b;
         }
@@ -26,12 +26,15 @@
             background-color: var(--bg-site);
             color: var(--text-dark);
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: #ffffff;
-            padding: 40px 20px;
+            padding: 45px 20px;
             text-align: center;
             border-bottom: 5px solid var(--accent);
         }
@@ -89,6 +92,7 @@
             margin: 25px auto;
             padding: 0 20px;
             width: 100%;
+            flex-grow: 1; /* Позволяет контенту занимать всё пространство до подвала */
         }
 
         .tab-content {
@@ -118,10 +122,12 @@
             margin-bottom: 20px;
         }
 
+        /* Модульная сетка для страницы "О нас" */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 24px;
+            margin-bottom: 24px;
         }
 
         @media (min-width: 769px) {
@@ -130,6 +136,7 @@
             }
         }
 
+        /* Строгая презентабельная карточка директора */
         .director-card {
             background: #f8fafc;
             padding: 24px;
@@ -171,11 +178,45 @@
             font-size: 0.95rem;
         }
 
+        /* Премиальный блок контактов внутри вкладки */
+        .contact-card-inline {
+            background: #f8fafc;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+        }
+
+        .contact-card-inline .row {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .contact-card-inline .row:last-child {
+            border-bottom: none;
+        }
+
+        @media (min-width: 480px) {
+            .contact-card-inline .row {
+                flex-direction: row;
+            }
+            .contact-card-inline .label {
+                width: 30%;
+                flex-shrink: 0;
+            }
+        }
+
+        .contact-card-inline .label {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
         /* Таблица официальных реквизитов */
         .legal-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
             font-size: 0.95rem;
         }
 
@@ -188,16 +229,17 @@
         }
 
         .legal-table td {
-            padding: 10px 5px;
+            padding: 12px 5px;
             vertical-align: top;
         }
 
         .legal-table td:first-child {
             font-weight: 700;
             color: var(--primary);
-            width: 40%;
+            width: 35%;
         }
 
+        /* Сетка для списка услуг на Главной */
         .services-list {
             display: grid;
             grid-template-columns: 1fr;
@@ -244,6 +286,7 @@
             text-align: left;
         }
 
+        /* Стили выпадающих ГОСТов */
         details {
             background: var(--card-bg);
             border-radius: 12px;
@@ -307,40 +350,29 @@
             margin-bottom: 8px;
         }
 
-        .contacts-box {
-            background: var(--primary);
-            color: #ffffff;
-            padding: 30px 25px;
-            border-radius: 12px;
-            margin-top: 30px;
-        }
-
-        .contacts-box h2 {
-            margin-top: 0;
-            color: var(--accent);
-            font-size: 1.4rem;
-        }
-
-        .contact-row {
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-        }
-
-        .requisites {
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px solid #334155;
-            font-size: 0.85rem;
-            color: #cbd5e1;
-            text-align: center;
-            font-style: normal;
-        }
-
+        /* СТРОГИЙ, КОРПОРАТИВНЫЙ ТЕМНЫЙ ПОДВАЛ */
         footer {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+            padding: 40px 20px;
             text-align: center;
-            padding: 30px 0;
+            border-top: 4px solid var(--accent);
+            margin-top: auto; /* Жестко прижимает подвал к низу страницы */
+        }
+
+        footer .trust-statement {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        footer .copyright {
+            font-size: 0.8rem;
             color: #64748b;
-            font-size: 0.85rem;
+            margin: 0;
         }
     </style>
 </head>
@@ -441,7 +473,7 @@
                         <strong>Виды лабораторных испытаний:</strong>
                         <ul class="test-list">
                             <li>Определение количественного содержания вяжущего (битума) методом выжигания или экстрагирования;</li>
-                            <li>Определение зернового состава mineralной части гранулята;</li>
+                            <li>Определение зернового состава минеральной части гранулята;</li>
                             <li>Определение влажности материала.</li>
                         </ul>
                     </div>
@@ -452,7 +484,7 @@
         <section id="about" class="tab-content">
             <div class="info-card">
                 <h2>О лаборатории</h2>
-                <div class="about-grid" style="margin-bottom: 30px;">
+                <div class="about-grid">
                     <div>
                         <p>ООО ДТЛ «ЭКСПЕРТ» — это независимая дорожно-техническая лаборатория, выполняющая полный спектр услуг по испытанию строительных материалов, операционному контролю и техническому сопровождению объектов дорожного хозяйства в г. Кургане и Курганской области.</p>
                         <p>Мы работаем как со строящимися объектами, так и в рамках экспертных проверок при ремонте и реконструкции автомагистралей, городских улиц и площадок производственного назначения.</p>
@@ -462,9 +494,25 @@
                         <img src="4.jpg" alt="Маглан Александр Владимирович" class="director-photo">
                         <div class="director-info">
                             <h3>Руководство</h3>
-                            <p><strong>Директор:</strong> Маглан Александр Владимирович</p>
+                            <p><strong>Директор:</strong><br>Маглан Александр Владимирович</p>
                             <p style="color: var(--text-muted); font-size: 0.9rem;">Высшее профильное дорожно-строительное техническое образование. Действующая аттестация в области строительного контроля дорожных одежд.</p>
                         </div>
+                    </div>
+                </div>
+
+                <h2>Контакты и график работы</h2>
+                <div class="contact-card-inline">
+                    <div class="row">
+                        <div class="label">Адрес лаборатории</div>
+                        <div class="value">640002, Курганская область, г. Курган, ул. Станционная, д. 64А, помещ. 1</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Режим работы</div>
+                        <div class="value">Понедельник – Пятница: с 8:00 до 17:00</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Прием проб</div>
+                        <div class="value">Ежедневно в рабочие часы (согласно регламентам ГОСТ на хранение образцов)</div>
                     </div>
                 </div>
 
@@ -477,10 +525,6 @@
                     <tr>
                         <td>Дата регистрации</td>
                         <td>26 марта 2024 года</td>
-                    </tr>
-                    <tr>
-                        <td>Юридический адрес</td>
-                        <td>640002, Курганская область, г. Курган, ул. Станционная, д. 64А, помещ. 1</td>
                     </tr>
                     <tr>
                         <td>Учредитель компании</td>
@@ -498,20 +542,13 @@
             </div>
         </section>
 
-        <section class="contacts-box">
-            <h2>Контакты</h2>
-            <div class="contact-row"><strong>Местонахождение:</strong> г. Курган, ул. Станционная, д. 64А</div>
-            <div class="contact-row"><strong>Режим работы:</strong> Пн - Пт: с 8:00 до 17:00 (прием дорожно-строительных проб)</div>
-
-            <div class="requisites">
-                Все лабораторные испытания проводятся в строгом соответствии с аттестованными методиками стандартов ГОСТ РФ
-            </div>
-        </section>
-
     </div>
 
     <footer>
-        <p>&copy; 2026 ООО ДТЛ «ЭКСПЕРТ». г. Курган</p>
+        <div class="trust-statement">
+            Все лабораторные испытания и экспертные заключения проводятся в строгом соответствии с аттестованными методиками национальных и межгосударственных стандартов ГОСТ РФ
+        </div>
+        <p class="copyright">&copy; 2026 ООО ДТЛ «ЭКСПЕРТ». г. Курган. Все права защищены.</p>
     </footer>
 
     <script>
