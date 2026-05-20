@@ -6,10 +6,10 @@
     <title>ООО ДТЛ ЭКСПЕРТ | Дорожная лаборатория Курган</title>
     <style>
         :root {
-            --primary: #0f172a;     /* Глубокий асфальтовый */
-            --accent: #f59e0b;      /* Дорожный оранжевый */
-            --bg-site: #f1f5f9;     /* Светлый фон сайта */
-            --card-bg: #ffffff;     /* Белый фон блоков */
+            --primary: #0f172a;     
+            --accent: #f59e0b;      
+            --bg-site: #f1f5f9;     
+            --card-bg: #ffffff;     
             --text-dark: #1e293b;
             --text-muted: #64748b;
         }
@@ -89,10 +89,12 @@
 
         .main-container {
             max-width: 1200px;
-            margin: 25px auto;
+            margin: 25px auto 0 auto; /* Убрали нижний отступ, чтобы подвал встал ровно */
             padding: 0 20px;
             width: 100%;
-            flex-grow: 1; /* Позволяет контенту занимать всё пространство до подвала */
+            flex-grow: 1; 
+            display: flex;
+            flex-direction: column;
         }
 
         .tab-content {
@@ -122,7 +124,6 @@
             margin-bottom: 20px;
         }
 
-        /* Модульная сетка для страницы "О нас" */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -136,7 +137,6 @@
             }
         }
 
-        /* Строгая презентабельная карточка директора */
         .director-card {
             background: #f8fafc;
             padding: 24px;
@@ -178,7 +178,6 @@
             font-size: 0.95rem;
         }
 
-        /* Премиальный блок контактов внутри вкладки */
         .contact-card-inline {
             background: #f8fafc;
             padding: 24px;
@@ -213,7 +212,6 @@
             color: var(--primary);
         }
 
-        /* Таблица официальных реквизитов */
         .legal-table {
             width: 100%;
             border-collapse: collapse;
@@ -239,7 +237,6 @@
             width: 35%;
         }
 
-        /* Сетка для списка услуг на Главной */
         .services-list {
             display: grid;
             grid-template-columns: 1fr;
@@ -286,7 +283,6 @@
             text-align: left;
         }
 
-        /* Стили выпадающих ГОСТов */
         details {
             background: var(--card-bg);
             border-radius: 12px;
@@ -350,29 +346,31 @@
             margin-bottom: 8px;
         }
 
-        /* СТРОГИЙ, КОРПОРАТИВНЫЙ ТЕМНЫЙ ПОДВАЛ */
+        /* КОМПАКТНЫЙ ПОДВАЛ (В ШИРИНУ КОНТЕНТА) */
         footer {
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: #ffffff;
-            padding: 40px 20px;
+            padding: 20px; /* Уменьшили высоту подвала в два раза */
             text-align: center;
-            border-top: 4px solid var(--accent);
-            margin-top: auto; /* Жестко прижимает подвал к низу страницы */
+            border-radius: 12px; /* Вернули скругления, чтобы сочеталось с карточками */
+            margin-top: auto; 
+            margin-bottom: 25px; /* Отступ от нижнего края экрана */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         footer .trust-statement {
-            font-size: 0.95rem;
+            font-size: 0.85rem; /* Аккуратный, мелкий, но читаемый шрифт */
             color: #cbd5e1;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-            line-height: 1.5;
-            font-weight: 500;
+            margin: 0 auto 10px auto; /* Меньше воздуха между текстами */
+            line-height: 1.4;
         }
 
         footer .copyright {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #64748b;
             margin: 0;
+            border-top: 1px solid #334155; /* Тонкая разделительная линия */
+            padding-top: 10px;
         }
     </style>
 </head>
@@ -542,14 +540,14 @@
             </div>
         </section>
 
-    </div>
+        <footer>
+            <div class="trust-statement">
+                Все лабораторные испытания и экспертные заключения проводятся в строгом соответствии с аттестованными методиками национальных и межгосударственных стандартов ГОСТ РФ
+            </div>
+            <p class="copyright">&copy; 2026 ООО ДТЛ «ЭКСПЕРТ». г. Курган. Все права защищены.</p>
+        </footer>
 
-    <footer>
-        <div class="trust-statement">
-            Все лабораторные испытания и экспертные заключения проводятся в строгом соответствии с аттестованными методиками национальных и межгосударственных стандартов ГОСТ РФ
-        </div>
-        <p class="copyright">&copy; 2026 ООО ДТЛ «ЭКСПЕРТ». г. Курган. Все права защищены.</p>
-    </footer>
+    </div>
 
     <script>
         function switchTab(evt, tabId) {
